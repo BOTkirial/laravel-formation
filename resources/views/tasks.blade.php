@@ -7,6 +7,7 @@
     </head>
     <body>
         <h1>Tasks</h1>
+        <x-tasks-list :tasks="$tasks"/>
         <livewire:counter />
     </body>
 </html>
