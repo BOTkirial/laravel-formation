@@ -9,5 +9,14 @@
         <h1>Tasks</h1>
         <x-tasks-list :tasks="$tasks"/>
         <livewire:counter />
+
+        @auth
+        <p>authentifié</p>
+        @endauth
+
+        @guest
+        <p>invité</p>
+        @endguest
+
     </body>
 </html>
