@@ -14,10 +14,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        Task::query()
-            ->when(request('status'), fn($q,$s) => $q->where('status',$s))
-            ->paginate(10)
-        ;
+        return Task::query()
+            ->when(request('status'), fn($q, $s) => $q->where('status', $s))
+            ->paginate(10);
     }
 
     /**
@@ -25,7 +24,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        Task::create($request->validated());
+        return response()->json(Task::create($request->validated()), 201);
     }
 
     /**
@@ -41,7 +40,7 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        $task->update($request->validated());
+        return $task->update($request->validated());
     }
 
     /**
@@ -49,6 +48,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $task->delete();
+        return $task->delete();
     }
 }
