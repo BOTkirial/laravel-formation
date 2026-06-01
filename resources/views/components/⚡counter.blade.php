@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Livewire\Components;
-
 use Livewire\Component;
 
-class Counter extends Component
+new class extends Component
 {
     public int $count = 0;
 
@@ -17,9 +15,11 @@ class Counter extends Component
     {
         $this->count--;
     }
+};
+?>
 
-    public function render()
-    {
-        return view('livewire.counter');
-    }
-}
+<div>
+    <span>Count: {{ $count }}</span>
+    <button type="button" wire:click="increment">+</button>
+    <button type="button" wire:click="decrement">-</button>
+</div>

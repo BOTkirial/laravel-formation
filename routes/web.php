@@ -7,5 +7,5 @@ Route::get('/', function () {
 });
 
 Route::get('/tasks', function () {
-    return view('index');
+    return view('tasks');
 });

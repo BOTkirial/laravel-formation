@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Tasks</title>
     </head>
     <body>
-        coucou
+        <h1>Tasks</h1>
         <livewire:counter />
     </body>
 </html>
