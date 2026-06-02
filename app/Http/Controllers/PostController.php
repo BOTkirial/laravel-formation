@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
+
+class PostController extends Controller
+{
+
+    use AuthorizesRequests;
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return Post::all();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $this->authorize('create', Post::class);
+        $validated = $request->validate(['title' => 'required|max:255', 'body' => 'required']);
+        auth()->user()->posts()->create($validated);
+        return redirect()->route('tasks')->with('success', 'Article créé !');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Post $post)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Post $post)
+    {
+        $this->authorize('update', $post);
+        return view('tasks');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Post $post)
+    {
+        $this->authorize('update', $post);
+        $validated = $request->validate(['title' => 'required|max:255', 'body' => 'required']);
+        $post->update($validated);
+        return redirect()->route('tasks');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Post $post)
+    {
+        $this->authorize('delete', $post);
+        $post->delete();
+        return redirect()->route('tasks');
+    }
+}
