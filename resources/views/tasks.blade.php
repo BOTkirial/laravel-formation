@@ -97,6 +97,10 @@
 
     @endguest
 
+    @if(auth()->user())
+        <a href="{{ route('newsletters.index') }}">Newsletters</a>
+    @endif
+
     <x-dialog />
 
 </body>

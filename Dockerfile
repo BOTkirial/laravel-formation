@@ -6,6 +6,11 @@ RUN apt-get update && apt-get install -y \
   && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN pecl install --onlyreqdeps --force redis \
+&& rm -rf /tmp/pear \
+&& docker-php-ext-enable redis
+
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www

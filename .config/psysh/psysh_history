@@ -1,0 +1,2 @@
+\App\Model\Subscriber::factory()->count(10)->create();
+\App\Models\Subscriber::factory()->count(10)->create();

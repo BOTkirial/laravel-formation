@@ -13,4 +13,6 @@ Route::get('/tasks', [WebTaskController::class, 'index'])->name('tasks');
 
 Route::middleware('auth')->group(function () {
     Route::resource('posts', PostController::class);
+    Route::resource('newsletters', \App\Http\Controllers\NewsletterController::class)
+    ->only(['index', 'create', 'store']);
 });
